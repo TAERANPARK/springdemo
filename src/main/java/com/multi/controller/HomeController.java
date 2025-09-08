@@ -14,14 +14,15 @@ public class HomeController {
         return "home"; // /WEB-INF/views/home.jsp
     }
 
-    @GetMapping("/message")
-    public String message(Model model){
-        model.addAttribute("msg", "Hello Spring");
-        return "show";
-    }
+//    @GetMapping("/message")
+//    public String message(Model model){
+//        model.addAttribute("msg", "Hello Spring");
+//        return "show";
+//    }
 
     @GetMapping("/message")
     public String msg(Model model){
-        return "hi";
+        model.addAttribute("msg", "Hi...");
+        return "hi"; // /WEB-INF/views/hi.jsp
     }
 }
