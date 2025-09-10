@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    조립기 입니다-->
+    <!-- 애너테이션을 전혀 사용하지 않고 순수 XML로 wiring -->
+    <bean id="myRepository" class="com.multi.repository.MemoryMyRepository"/>
+
+    <bean id="myService" class="com.multi.service.MyServiceImpl">
+        <!-- 생성자 주입 -->
+        <constructor-arg ref="myRepository"/>
+        <!-- setter 주입 (prefix 값을 XML로 바꿔 보기) -->
+        <property name="prefix" value="[XML]"/>
+    </bean>
+</beans>
+

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="com.multi.di.di5"/>
+    <bean id="book1" class="com.multi.di.di5.Book" scope="singleton"
+          init-method="init" destroy-method="destroy"
+          p:bookName="html바이블" p:author="이나리"
+          p:price="7000" p:publisher="삼성출판">
+        <qualifier value="b1"></qualifier>
+    </bean>
+
+    <bean id="book2" class="com.multi.di.di5.Book" scope="singleton"
+          init-method="init" destroy-method="destroy">
+        <constructor-arg name="bookName" value="토비스프링"  type="java.lang.String" index="0"></constructor-arg>
+        <constructor-arg name="price" value="8900"  type="int" index="1"></constructor-arg>
+        <constructor-arg name="author" value="토비"  type="java.lang.String" index="2"></constructor-arg>
+        <constructor-arg name="publisher" value="토비출판"  type="java.lang.String" index="3"></constructor-arg>
+        <qualifier value="b2"></qualifier>
+    </bean>
+
+    <bean id="book3" class="com.multi.di.di5.Book" scope="singleton"
+          init-method="init" destroy-method="destroy">
+        <!--property는 setName,setBookName 과 같음-->
+        <property name="author" value="재윤이"></property>
+        <property name="bookName" value="sql쿡북"></property>
+        <property name="price" value="6800"></property>
+        <property name="publisher" value="부산출판"></property>
+        <qualifier value="b3"></qualifier>
+    </bean>
+
+</beans>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="memberRepository" class="com.multi.di.di3.MemoryMemberRepository" scope="singleton"/>
+    <bean id="memberService" class="com.multi.di.di3.MemberService">
+        <constructor-arg ref="memberRepository"/>
+    </bean>
+    <bean id="memberServiceWithSetter" class="com.multi.di.di3.MemberServiceWithSetter" scope="prototype">
+        <property name="memberRepository" ref="memberRepository"/>
+    </bean>
+
+</beans>

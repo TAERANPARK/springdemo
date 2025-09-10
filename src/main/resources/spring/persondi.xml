@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+<!--세터로 인젝션 하는 부분-->
+    <bean id="person1" class="com.multi.di.di4.Person" scope="singleton">
+        <property name="name" value="선비"/>
+        <property name="age" value="25"/>
+        <property name="address" value="마산시"/>
+    </bean>
+
+<!--    생성자로 인젝션 하는 부분-->
+<!--    public Person(String name, int age, String address) {-->
+<!--    super();-->
+<!--    this.name = name;-->
+<!--    this.age = age;-->
+<!--    this.address = address;-->
+<!--    }-->
+    <bean id="person2" class="com.multi.di.di4.Person" scope="singleton">
+        <constructor-arg index="0" name="name" type="java.lang.String" value="윤성"></constructor-arg>
+        <constructor-arg index="1" name="age" type="int" value="30"></constructor-arg>
+        <constructor-arg index="2" name="address" type="java.lang.String" value="부산시수영구연산동"></constructor-arg>
+    </bean>
+<!--    name space injection 인젝션-->
+    <bean id="person3" class="com.multi.di.di4.Person" scope="singleton"  p:name="주현" p:age="22" p:address="부산시"/>
+    <bean id="pCollection" class="com.multi.di.di4.PersonCollection">
+        <property name="list">
+            <list>
+                <ref bean="person1"/>
+                <ref bean="person3"/>
+                <ref bean="person1"/>
+                <ref bean="person2"/>
+            </list>
+        </property>
+        <property name="set">
+            <set>
+                <ref bean="person1"/>
+                <ref bean="person1"/>
+                <ref bean="person1"/>
+                <ref bean="person2"/>
+                <ref bean="person3"/>
+            </set>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="servlet/com/login">login</prop>
+                <prop key="servlet/com/list">list</prop>
+                <prop key="servlet/com/delete">delete</prop>
+                <prop key="servlet/com/update">update</prop>
+            </props>
+        </property>
+        <property name="map">
+            <map>
+                <entry>
+                    <key>
+                        <value>1</value>
+                    </key>
+                    <ref bean="person1"/>
+                </entry>
+                <entry>
+                    <key>
+                        <value>2</value>
+                    </key>
+                    <ref bean="person2"/>
+                </entry>
+                <entry>
+                    <key>
+                        <value>3</value>
+                    </key>
+                    <ref bean="person3"/>
+                </entry>
+            </map>
+        </property>
+    </bean>
+</beans>

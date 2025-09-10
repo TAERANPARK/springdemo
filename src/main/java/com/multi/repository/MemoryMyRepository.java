@@ -1,9 +1,11 @@
 package com.multi.repository;
 
-import com.multi.service.MyService;
-import com.multi.service.MyServiceImpl;
+import org.springframework.stereotype.Repository;
 
-public class MemoryMyRepository implements MyService {
-
-
+@Repository
+public class MemoryMyRepository implements MyRepository {
+    @Override
+    public String getMessage(String name) {
+        return "Hello, " + name;
+    }
 }

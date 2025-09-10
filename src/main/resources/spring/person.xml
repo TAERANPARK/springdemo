@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           https://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="person1" class="com.multi.di.di1.Person" scope="prototype">
+        <property name="name" value="태란"/>
+        <property name="address" value="동탄"/>
+        <property name="age" value="26"/>
+    </bean>
+</beans>
+<!-- PersonMain 에서 .getBin 했을 때 싱클턴이면 이름 새로 할당하면 새로운 이름으로 만들어지고 프로토타입이면 원래 세팅한 이름만 나옴-->
