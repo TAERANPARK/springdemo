@@ -1,6 +1,5 @@
 package com.multi.controller;
 
-import jdk.jfr.Category;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
-    @GetMapping({"/", "/home"})
+    @GetMapping({"/", "/home"})  //매퍼 메핑 어댑터 부분
     public String home(Model model){
         model.addAttribute("msg", "Spring Legacy (XML) running!");
         return "home"; // /WEB-INF/views/home.jsp
@@ -20,7 +19,7 @@ public class HomeController {
 //        return "show";
 //    }
 
-    @GetMapping("/message")
+    @GetMapping("/message")  //매퍼 메핑 어댑터 부분
     public String msg(Model model){
         model.addAttribute("msg", "Hi...");
         return "hi"; // /WEB-INF/views/hi.jsp
