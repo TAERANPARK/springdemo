@@ -1,0 +1,48 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.multi.core"/>
+
+
+    <bean id="timeProvider" class="com.multi.core.time.TimeProvider">
+        <constructor-arg value="yyyy-MM-dd HH:mm:ss"/>
+    </bean>
+    <bean id="rateDiscountPolicy" class="com.multi.core.discount.RateDiscountPolicy">
+        <property name="rate" value="10"/>
+    </bean>
+
+    <bean id="fixDiscountPolicy" class="com.multi.core.discount.FixDiscountPolicy">
+        <property name="discountPrice" value="1000"/>
+    </bean>
+
+    <bean id="emailNotifier" class="com.multi.core.notify.EmailNotifier">
+        <property name="email" value="ordernotify@naver.com"/>
+    </bean>
+
+    <bean id="smsNotifier" class="com.multi.core.notify.SmsNotifier">
+        <property name="sms" value="031-123-4567"/>
+    </bean>
+
+    <bean id="orderService" class="com.multi.core.order.OrderService">
+        <property name="discountPolicy">
+            <list>
+                <ref bean="rateDiscountPolicy"/>
+                <ref bean="fixDiscountPolicy"/>
+            </list>
+        </property>
+
+        <property name="timeProvider" ref="timeProvider"/>
+
+        <property name="notifiers">
+            <list>
+                <ref bean="emailNotifier"/>
+                <ref bean="smsNotifier"/>
+            </list>
+        </property>
+    </bean>
+
+</beans>

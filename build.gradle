@@ -65,6 +65,10 @@ dependencies {
     testImplementation "org.springframework:spring-test:${springVersion}"
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-aop' // AOP 핵심
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 test {
